@@ -6,13 +6,16 @@ import axios from "axios";
 import { useContext } from "react";
 import { AppContext } from "./Context";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../baseurl";
 
 function Header(props) {
   const { dispatch } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    const response = await axios.post("/users/logout");
+    const response = await axios.post(baseUrl + "/users/logout", {
+      withCredentials: true,
+    });
     console.log("🚀 ~ response:", response.data);
 
     dispatch({ type: "LOGOUT" });
