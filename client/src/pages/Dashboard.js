@@ -17,10 +17,7 @@ function Dashboard(props) {
 
   async function getData() {
     const response = await axios.get(
-      baseUrl + "/posts/list?limit=5&skip=" + state.posts.length,
-      {
-        withCredentials: true,
-      }
+      baseUrl + "/posts/list?limit=5&skip=" + state.posts.length
     );
     console.log("🚀 ~ response:", response);
 
@@ -42,13 +39,7 @@ function Dashboard(props) {
     // if (!text) return;
     console.log("🚀 ~ text:", text);
 
-    const response = await axios.post(
-      baseUrl + "/posts/add",
-      { text },
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await axios.post(baseUrl + "/posts/add", { text });
     console.log("🚀 ~ response:", response);
 
     if (response.data.success) {
