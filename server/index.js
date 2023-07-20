@@ -15,7 +15,10 @@ db();
 const app = express();
 
 const corsOptions = {
-  origin: "*",
+  origin:
+    process.env.NODE_ENV === "production"
+      ? process.env.CLIENT
+      : "http://localhost:3000",
   credentials: true,
   preflightContinue: true,
   optionsSuccessStatus: 200,
