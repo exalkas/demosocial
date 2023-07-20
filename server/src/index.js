@@ -14,7 +14,17 @@ db();
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin:
+    process.env.NODE_ENV === "production"
+      ? process.env.SERVER
+      : "http://localhost:5000",
+  credentials: true,
+  preflightContinue: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser()); // reads cookies in every request
 app.use(express.json()); // handle body object from requests
 

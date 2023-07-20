@@ -16,7 +16,10 @@ function Dashboard(props) {
 
   async function getData() {
     const response = await axios.get(
-      "/posts/list?limit=5&skip=" + state.posts.length
+      "/posts/list?limit=5&skip=" + state.posts.length,
+      {
+        withCredentials: true,
+      }
     );
     console.log("🚀 ~ response:", response);
 
@@ -38,7 +41,13 @@ function Dashboard(props) {
     // if (!text) return;
     console.log("🚀 ~ text:", text);
 
-    const response = await axios.post("/posts/add", { text });
+    const response = await axios.post(
+      "/posts/add",
+      { text },
+      {
+        withCredentials: true,
+      }
+    );
     console.log("🚀 ~ response:", response);
 
     if (response.data.success) {
