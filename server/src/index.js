@@ -17,8 +17,8 @@ const app = express();
 const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? process.env.SERVER
-      : "http://localhost:5000",
+      ? process.env.CLIENT
+      : "http://localhost:3000",
   credentials: true,
   preflightContinue: true,
   optionsSuccessStatus: 200,

@@ -4,6 +4,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import Modal from "../components/Modal";
 import axios from "axios";
 import Card from "../components/Card";
+import { baseUrl } from "../baseurl";
 
 function Dashboard(props) {
   const { state, dispatch } = useContext(AppContext);
@@ -16,7 +17,7 @@ function Dashboard(props) {
 
   async function getData() {
     const response = await axios.get(
-      "/posts/list?limit=5&skip=" + state.posts.length,
+      baseUrl + "/posts/list?limit=5&skip=" + state.posts.length,
       {
         withCredentials: true,
       }
@@ -42,7 +43,7 @@ function Dashboard(props) {
     console.log("🚀 ~ text:", text);
 
     const response = await axios.post(
-      "/posts/add",
+      baseUrl + "/posts/add",
       { text },
       {
         withCredentials: true,

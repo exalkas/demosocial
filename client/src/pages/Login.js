@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { AppContext } from "../components/Context";
+import { baseUrl } from "../baseurl";
 
 function LoginResponsive(props) {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function LoginResponsive(props) {
 
       console.log("🚀 ~ userData:", userData);
 
-      const response = await axios.post("/users/login", userData);
+      const response = await axios.post(baseUrl + "/users/login", userData);
       console.log("🚀 ~ response:", response);
 
       if (response.data.success === false) {
