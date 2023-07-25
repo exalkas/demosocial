@@ -19,7 +19,8 @@ function Comment({ comment, post }) {
 
   const handleDeleteComment = async () => {
     const response = await axios.delete(
-      `/comments/delete/${post}/${comment._id}`
+      `/comments/delete/${post}/${comment._id}`,
+      { withCredentials: true }
     );
     console.log("🚀 ~ response:", response);
 
@@ -39,11 +40,15 @@ function Comment({ comment, post }) {
   const handleEditSubmit = async () => {
     console.log("submitted");
 
-    const response = await axios.post("/comments/edit", {
-      post,
-      commentId: comment._id,
-      text: commentToEdit,
-    });
+    const response = await axios.post(
+      "/comments/edit",
+      {
+        post,
+        commentId: comment._id,
+        text: commentToEdit,
+      },
+      { withCredentials: true }
+    );
     console.log("🚀 ~ response:", response);
 
     if (response.data.success) {

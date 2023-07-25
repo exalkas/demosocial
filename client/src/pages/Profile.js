@@ -48,6 +48,7 @@ export default function Profile() {
     }
 
     const response = await axios.put("/users/updateprofile", formdata, {
+      withCredentials: true,
       Headers: {
         "Content-type": "multipart/form-data; charset=UTF-8",
       },

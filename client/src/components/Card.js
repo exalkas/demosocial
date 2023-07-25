@@ -25,7 +25,11 @@ function Card({ item }) {
 
   const handleLike = async () => {
     setShowSpinner(true);
-    const response = await axios.post("/posts/like", { post: _id });
+    const response = await axios.post(
+      "/posts/like",
+      { post: _id },
+      { withCredentials: true }
+    );
     console.log("🚀 ~ response:", response);
 
     if (response.data.success) {
@@ -47,10 +51,14 @@ function Card({ item }) {
     if (item.text === postToEdit) return; // there is no change between current text and submitted text
     if (!postToEdit.trim()) return; // if new text is empty return
 
-    const response = await axios.post("/posts/edit", {
-      ...item,
-      text: postToEdit,
-    });
+    const response = await axios.post(
+      "/posts/edit",
+      {
+        ...item,
+        text: postToEdit,
+      },
+      { withCredentials: true }
+    );
     console.log("🚀 ~ response:", response);
 
     if (response.data.success) {
@@ -63,7 +71,9 @@ function Card({ item }) {
   };
 
   const handleDeleteClick = async () => {
-    const response = await axios.delete("/posts/delete/" + item._id);
+    const response = await axios.delete("/posts/delete/" + item._id, {
+      withCredentials: true,
+    });
     console.log("🚀 ~ response:", response);
 
     if (response.data.success) {

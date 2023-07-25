@@ -12,7 +12,11 @@ function NewComment({ post }) {
 
     if (!text.trim()) return;
 
-    const response = await axios.post("/comments/add", { post, text });
+    const response = await axios.post(
+      "/comments/add",
+      { post, text },
+      { withCredentials: true }
+    );
     console.log("🚀 ~ response:", response);
 
     if (response.data.success) {
