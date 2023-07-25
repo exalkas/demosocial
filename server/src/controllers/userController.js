@@ -83,7 +83,8 @@ export const handleLogin = async (req, res) => {
     res.cookie("wdpt014", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production" ? true : false, // the cookie will be sent only over HTTPS in production
-      sameSite: "lax", //"none", "strict"
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      // sameSite: "lax", //"none", "strict"
     });
 
     res.send({ success: true, user: newUser });
