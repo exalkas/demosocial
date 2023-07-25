@@ -6,6 +6,7 @@ import RadiogroupCustom from "../components/RadiogroupCustom";
 import MultiSelect from "../components/Multiselect";
 import { AppContext } from "../components/Context";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../baseurl";
 
 export default function Profile() {
   const { state, dispatch, logout } = useContext(AppContext);
@@ -47,12 +48,16 @@ export default function Profile() {
       console.log(pair[0] + ": " + pair[1]);
     }
 
-    const response = await axios.put("/users/updateprofile", formdata, {
-      withCredentials: true,
-      Headers: {
-        "Content-type": "multipart/form-data; charset=UTF-8",
-      },
-    });
+    const response = await axios.put(
+      baseUrl + "/users/updateprofile",
+      formdata,
+      {
+        withCredentials: true,
+        Headers: {
+          "Content-type": "multipart/form-data; charset=UTF-8",
+        },
+      }
+    );
     console.log("🚀 ~ response:", response);
   };
 

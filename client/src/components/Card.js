@@ -12,6 +12,7 @@ import Spinner from "./Spinner";
 import Modal from "./Modal";
 import NewComment from "./NewComment.js";
 import Comment from "./Comment.js";
+import { baseUrl } from "../baseurl";
 
 function Card({ item }) {
   const { text, owner, _id, likes } = item;
@@ -26,7 +27,7 @@ function Card({ item }) {
   const handleLike = async () => {
     setShowSpinner(true);
     const response = await axios.post(
-      "/posts/like",
+      baseUrl + "/posts/like",
       { post: _id },
       { withCredentials: true }
     );
@@ -52,7 +53,7 @@ function Card({ item }) {
     if (!postToEdit.trim()) return; // if new text is empty return
 
     const response = await axios.post(
-      "/posts/edit",
+      baseUrl + "/posts/edit",
       {
         ...item,
         text: postToEdit,
@@ -71,7 +72,7 @@ function Card({ item }) {
   };
 
   const handleDeleteClick = async () => {
-    const response = await axios.delete("/posts/delete/" + item._id, {
+    const response = await axios.delete(baseUrl + "/posts/delete/" + item._id, {
       withCredentials: true,
     });
     console.log("🚀 ~ response:", response);

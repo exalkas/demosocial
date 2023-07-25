@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import { AppContext } from "./Context";
+import { baseUrl } from "../baseurl";
 
 function NewComment({ post }) {
   const { state, dispatch } = useContext(AppContext);
@@ -13,7 +14,7 @@ function NewComment({ post }) {
     if (!text.trim()) return;
 
     const response = await axios.post(
-      "/comments/add",
+      baseUrl + "/comments/add",
       { post, text },
       { withCredentials: true }
     );

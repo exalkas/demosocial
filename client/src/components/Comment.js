@@ -6,6 +6,7 @@ import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { AppContext } from "./Context";
 import Modal from "./Modal";
+import { baseUrl } from "../baseurl";
 
 function Comment({ comment, post }) {
   const { state, dispatch } = useContext(AppContext);
@@ -19,7 +20,7 @@ function Comment({ comment, post }) {
 
   const handleDeleteComment = async () => {
     const response = await axios.delete(
-      `/comments/delete/${post}/${comment._id}`,
+      `${baseUrl}/comments/delete/${post}/${comment._id}`,
       { withCredentials: true }
     );
     console.log("🚀 ~ response:", response);
@@ -41,7 +42,7 @@ function Comment({ comment, post }) {
     console.log("submitted");
 
     const response = await axios.post(
-      "/comments/edit",
+      baseUrl + "/comments/edit",
       {
         post,
         commentId: comment._id,
